@@ -2,7 +2,7 @@
 pipeline {
     agent { label "Jenkins-Agent" }
     environment {
-              APP_NAME = "Java-App"
+              REPO_PATTERN = "767397888237.dkr.ecr.us-east-1.amazonaws.com/java-project-repo:java-app"
     }
 
     stages {
@@ -20,13 +20,11 @@ pipeline {
 
         stage("Update the Deployment Tags") {
             steps {
-                    // Read deployment YAML file
-                    def yaml = readFile 'deployment.yaml'
-                    // Replace image tag
-                    yaml = yaml.replaceAll(/image: 767397888237.dkr.ecr.us-east-1.amazonaws.com\/java-project-repo:${APP_NAME}-\d+/, "image: 767397888237.dkr.ecr.us-east-1.amazonaws.com/java-project-repo:${APP_NAME}-${IMAGE_TAG}")
-                    // Write updated YAML back to file
-                    writeFile file: 'deployment.yaml', text: yaml
-
+                sh """
+                    cat deployment.yaml
+                    sed -i 's${REPO_PATTERN}.*${REPO_PATTERN}-${IMAGE_TAG}/g' deployment.yaml
+                    cat deployment.yaml
+                """
             }
         }
 
