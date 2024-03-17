@@ -14,7 +14,7 @@ pipeline {
 
         stage("Checkout from SCM") {
                steps {
-                   git branch: 'main', url: 'https://github.com/starboyhassan/Java-App-CI'
+                   git branch: 'main', url: 'https://github.com/starboyhassan/Java-App-CD'
                }
         }
 
