@@ -22,7 +22,7 @@ pipeline {
             steps {
                 sh """
                     cat deployment.yaml
-                    sed -i 's${REPO_PATTERN}.*${REPO_PATTERN}-${IMAGE_TAG}/g' deployment.yaml
+                    sed -i 's#${REPO_PATTERN}.*#${REPO_PATTERN}-${IMAGE_TAG}#g' deployment.yaml
                     cat deployment.yaml
                 """
             }
