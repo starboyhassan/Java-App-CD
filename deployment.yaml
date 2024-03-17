@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
         - name: java-app
-          image: 767397888237.dkr.ecr.us-east-1.amazonaws.com/java-project-repo:java-app-
+          image: 767397888237.dkr.ecr.us-east-1.amazonaws.com/java-project-repo:java-app-33
           resources:
             limits:
               memory: "256Mi"
